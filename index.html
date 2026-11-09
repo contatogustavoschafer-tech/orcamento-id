@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Calculadora de Orçamento | Identidade Visual</title>
+  <meta name="description" content="Simulação rápida e transparente de investimento em Identidade Visual e Branding.">
+  
+  <!-- Favicon minimalista -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fundo Animado Three.js / Vanta.NET -->
+  <div id="vanta-background"></div>
+
+  <!-- Orbs de Glow Suave de Fundo (Blur e movimento fluido) -->
+  <div class="ambient-glow">
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Barra Superior Limpa (Apenas Configurações no canto superior) -->
+    <header class="brand-header" style="justify-content: flex-end; padding: 18px 20px 0;">
+      <button id="open-settings-btn" title="Painel de Configurações" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); color: #a1a1aa; border-radius: 9999px; padding: 6px 14px; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        Configurações
+      </button>
+    </header>
+
+    <!-- Área Principal do Simulador -->
+    <main class="wizard-wrapper">
+      
+      <!-- Linha de Progresso -->
+      <div class="progress-container">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="steps-meta">
+          <span class="step-indicator-pill" id="step-label">ETAPA 1 DE 6</span>
+          <span style="font-size: 0.72rem; color: #52525b;">Estimativa de Investimento</span>
+        </div>
+      </div>
+
+      <!-- Hero Typography (Seguindo rigorosamente o design da imagem enviada) -->
+      <section class="hero-typography">
+        <!-- Badge dinâmica que muda com o nome/marca do cliente em tempo real -->
+        <div style="margin-bottom: 16px;">
+          <div class="brand-badge" id="client-dynamic-badge">
+            <div class="brand-avatar" id="client-avatar-initial">✦</div>
+            <span id="client-handle-display">@sua_marca</span>
+          </div>
+        </div>
+
+        <h1 class="hero-quote">
+          Clientes <b>não</b><br>
+          compram <b>o que</b><br>
+          <b>não confiam.</b>
+        </h1>
+        <div>
+          <div class="hero-subtitle-pill">
+            E confiança <strong>começa pelo design.</strong>
+          </div>
+        </div>
+        <div class="hero-hint">
+          <span>Personalize sua proposta em 1 minuto</span>
+          <span>↘</span>
+        </div>
+      </section>
+
+      <!-- PASSO 1: Informações do Cliente -->
+      <section class="step-pane active" id="step-1">
+        <div class="section-header">
+          <div class="section-label">01 // Identificação</div>
+          <h2 class="section-title">Sobre você e sua marca</h2>
+          <p class="section-desc">Para quem vamos preparar este direcionamento visual?</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label class="input-label" for="client-name">
+              Seu Nome Completo <span>*obrigatório</span>
+            </label>
+            <input type="text" id="client-name" class="custom-input" placeholder="Ex: Ana Clara Martins" autocomplete="name" required>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="client-company">
+              Nome da Marca ou Empresa <span>(opcional)</span>
+            </label>
+            <input type="text" id="client-company" class="custom-input" placeholder="Ex: Aura Joalheria">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="client-niche">
+              Nicho / Ramo de Atuação <span>(opcional)</span>
+            </label>
+            <input type="text" id="client-niche" class="custom-input" placeholder="Ex: Moda Feminina, Advocacia, Gastronomia">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="client-phone">
+              Seu WhatsApp de Contato <span>(opcional)</span>
+            </label>
+            <input type="tel" id="client-phone" class="custom-input" placeholder="(11) 98765-4321">
+          </div>
+        </div>
+      </section>
+
+      <!-- PASSO 2: Pacote Principal de Identidade Visual -->
+      <section class="step-pane" id="step-2">
+        <div class="section-header">
+          <div class="section-label">02 // Escopo Central</div>
+          <h2 class="section-title">Selecione o nível de profundidade</h2>
+          <p class="section-desc">Escolha o pacote de Identidade Visual que melhor atende ao momento atual do seu negócio.</p>
+        </div>
+
+        <div class="cards-grid" id="packages-container">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+      </section>
+
+      <!-- PASSO 3: Materiais Impressos e Papelaria -->
+      <section class="step-pane" id="step-3">
+        <div class="section-header">
+          <div class="section-label">03 // Ponto de Contato Físico</div>
+          <h2 class="section-title">Materiais Gráficos e Papelaria</h2>
+          <p class="section-desc">Selecione os materiais impressos que sua marca precisará no dia a dia (opcional):</p>
+        </div>
+
+        <div class="cards-grid" id="print-addons-container">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+      </section>
+
+      <!-- PASSO 4: Presença Digital e Redes Sociais -->
+      <section class="step-pane" id="step-4">
+        <div class="section-header">
+          <div class="section-label">04 // Ativos Digitais</div>
+          <h2 class="section-title">Presença Digital e Redes Sociais</h2>
+          <p class="section-desc">Templates e materiais para manter o padrão estético nas suas mídias digitais:</p>
+        </div>
+
+        <div class="cards-grid" id="digital-addons-container">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+      </section>
+
+      <!-- PASSO 5: Prazos e Prioridade -->
+      <section class="step-pane" id="step-5">
+        <div class="section-header">
+          <div class="section-label">05 // Cronograma</div>
+          <h2 class="section-title">Qual é o seu prazo ideal?</h2>
+          <p class="section-desc">Nosso processo envolve pesquisa aprofundada, conceituação e refinamento técnico:</p>
+        </div>
+
+        <div class="cards-grid two-col" id="timelines-container">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+      </section>
+
+      <!-- PASSO 6: Resumo Executivo e Proposta Final -->
+      <section class="step-pane" id="step-6">
+        <div id="summary-render-target">
+          <!-- Renderizado dinamicamente com totais e WhatsApp via app.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Barra Flutuante Inferior de Ação e Total em Tempo Real -->
+    <footer class="bottom-nav-bar" id="bottom-nav">
+      <div class="bottom-nav-inner">
+        <div class="live-tally-box">
+          <span class="live-tally-label">Investimento Estimado</span>
+          <span class="live-tally-amount" id="live-tally-value">R$ 0</span>
+        </div>
+
+        <div class="nav-buttons-group">
+          <button type="button" class="nav-btn nav-btn-back" id="btn-back" style="visibility: hidden;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Voltar
+          </button>
+          <button type="button" class="nav-btn nav-btn-next" id="btn-next">
+            Continuar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal de Configurações para o Designer / Dono do Site -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 class="modal-title">Painel de Configuração</h3>
+        <button id="close-settings-btn" style="background: none; border: none; color: #a1a1aa; cursor: pointer; font-size: 1.4rem;">&times;</button>
+      </div>
+      <p class="modal-desc">Edite seus dados profissionais para que os orçamentos cheguem diretamente para você.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="input-group">
+          <label class="input-label" for="set-designer-name">Nome do Profissional / Estúdio</label>
+          <input type="text" id="set-designer-name" class="custom-input" placeholder="Samuel Reis">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="set-designer-handle">@ do Instagram</label>
+          <input type="text" id="set-designer-handle" class="custom-input" placeholder="@samuelreis_">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="set-whatsapp-phone">Número de WhatsApp (com DDI e DDD)</label>
+          <input type="text" id="set-whatsapp-phone" class="custom-input" placeholder="5511999999999">
+          <small style="color: #71717a; font-size: 0.72rem;">Exemplo: 55 + DDD + Número sem traços ou parênteses.</small>
+        </div>
+
+        <div class="form-grid" style="margin-top: 4px;">
+          <div class="input-group">
+            <label class="input-label" for="set-max-installments">Parcelas sem juros</label>
+            <input type="number" id="set-max-installments" class="custom-input" min="1" max="18" placeholder="10">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="set-pix-discount">% Desconto no PIX</label>
+            <input type="number" id="set-pix-discount" class="custom-input" min="0" max="30" placeholder="10">
+          </div>
+        </div>
+
+        <div style="margin-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 12px;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: #d4d4d8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Valores dos Pacotes (R$)</div>
+          
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: #a1a1aa;">Identidade Essencial</span>
+              <input type="number" id="set-price-essential" class="custom-input" style="width: 120px; padding: 8px 12px; font-size: 0.85rem;" placeholder="1800">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: #a1a1aa;">Identidade Pro (Completa)</span>
+              <input type="number" id="set-price-pro" class="custom-input" style="width: 120px; padding: 8px 12px; font-size: 0.85rem;" placeholder="2900">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: #a1a1aa;">Branding 360° Estratégico</span>
+              <input type="number" id="set-price-strategic" class="custom-input" style="width: 120px; padding: 8px 12px; font-size: 0.85rem;" placeholder="4600">
+            </div>
+          </div>
+        </div>
+
+        <button type="button" id="save-settings-btn" class="btn-primary-action" style="margin-top: 10px; width: 100%;">
+          Salvar Alterações
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: Three.js e Vanta.NET solicitados pelo usuário -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+  <!-- Lógica da Aplicação -->
+  <script src="app.js"></script>
+</body>
+</html>
+
