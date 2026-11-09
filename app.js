@@ -1,89 +1,89 @@
-// Configuração padrão do profissional / estúdio
-const DEFAULT_CONFIG = {
-  designerName: "Samuel",
-  designerHandle: "@seustudio",
-  whatsappPhone: "5511999999999", // Altere nas configurações
-  maxInstallments: 10,
-  pixDiscountPercent: 10,
-  currencySymbol: "R$",
-  
-  // Pacotes principais
+// ========================================================
+// CONFIGURAÇÃO DO PROFISSIONAL (Altere seu WhatsApp aqui)
+// ========================================================
+const STUDIO_CONFIG = {
+  designerName: "Gustavo",
+  whatsappPhone: "5588921693022", // Coloque seu DDD + Número aqui (Ex: 5581999999999)
+  maxInstallments: 6,             // Até 6x sem juros no cartão
+  pixDiscountPercent: 10,         // 10% de desconto no PIX
+
+  // 2 Planos Principais (Preços baixos e acessíveis)
   packages: {
     essential: {
       id: "essential",
       name: "Identidade Essencial",
-      tagline: "Para quem está começando e precisa de uma presença visual profissional e marcante.",
-      price: 1800,
+      tagline: "O ponto de partida ideal para ter um visual profissional e confiável.",
+      price: 500, // R$ 500 no cartão ou R$ 450 no PIX
       features: [
         "Logotipo principal + variações de aplicação",
-        "Paleta de cores estratégica com códigos HEX/CMYK",
-        "Seleção tipográfica primária e secundária",
-        "Guia de uso da marca em PDF",
-        "Arquivos finais em vetor (.AI, .EPS, .SVG, .PNG)"
+        "Paleta de cores estratégica com códigos HEX/RGB",
+        "Seleção de fontes institucionais da marca",
+        "Arquivos finais em alta resolução (.PNG sem fundo e .PDF vetor)"
       ]
     },
     pro: {
       id: "pro",
       name: "Identidade Completa (Pro)",
-      tagline: "O projeto definitivo para posicionar seu negócio com autoridade máxima no mercado.",
-      price: 2900,
+      tagline: "Pacote completo para quem deseja se destacar com autoridade e presença visual marcante.",
       popular: true,
+      price: 700, // R$ 700 no cartão ou R$ 630 no PIX
       features: [
-        "Tudo do pacote Essencial",
-        "Submarcas e selos de assinatura",
-        "Padrão gráfico exclusivo (Patterns / Grafismos)",
-        "Manual de Identidade Visual detalhado",
-        "Kit avatar e capas para todas as redes sociais",
-        "Mockups 3D hiper-realistas para validação"
-      ]
-    },
-    strategic: {
-      id: "strategic",
-      name: "Branding 360° Estratégico",
-      tagline: "Diagnóstico profundo, arquétipo, tom de voz e posicionamento competitivo completo.",
-      price: 4600,
-      features: [
-        "Tudo do pacote Completo (Pro)",
-        "Diagnóstico de marca e pesquisa de concorrentes",
-        "Definição de arquétipo de marca e tom de voz",
-        "Manifesto da marca e guia de comunicação",
-        "Diretrizes para fotografia e tom visual",
-        "Suporte prioritário via WhatsApp direto"
+        "Tudo do plano Essencial",
+        "Submarcas e selos circulares de assinatura",
+        "Padrão gráfico exclusivo (Pattern / Estampa da marca)",
+        "Manual de Identidade Visual simplificado (guia prático de aplicação)"
       ]
     }
   },
 
-  // Adicionais de Papelaria / Impressos
-  printAddons: [
-    { id: "cartao", name: "Cartão de Visita Premium", desc: "Design para verniz localizado / hot stamping e versão digital interativa", price: 190 },
-    { id: "timbrado", name: "Papelaria Corporativa", desc: "Papel timbrado, pasta para documentos, envelope e bloco", price: 320 },
-    { id: "embalagem", name: "Embalagem / Sacola / Rótulo", desc: "Design técnico com faca especial para impressão e tags", price: 480 },
-    { id: "uniforme", name: "Uniformes e Crachás", desc: "Camisetas, aventais, moletons ou identificação corporativa", price: 220 },
-    { id: "catalogo", name: "Cardápio ou Catálogo de Produtos", desc: "Diagramação editorial profissional de até 8 páginas", price: 540 }
+  // Adicionais enxutos (SEM exibição de preço durante a seleção)
+  addons: [
+    {
+      id: "papelaria",
+      name: "Papelaria Essencial",
+      desc: "Design de cartão de visita executivo e modelo de papel timbrado digital.",
+      percentRate: 0.15, // +15% no cálculo final
+      fixedPrice: 75
+    },
+    {
+      id: "pack_posts",
+      name: "Pack 3 Posts / Templates Editáveis",
+      desc: "3 artes profissionais alinhadas à sua nova identidade com modelo editável.",
+      percentRate: 0.15, // +15% no cálculo final
+      fixedPrice: 75
+    },
+    {
+      id: "destaques",
+      name: "Capas de Destaques para Instagram",
+      desc: "Kit com 6 ícones personalizados para organizar e padronizar os destaques do seu perfil.",
+      percentRate: 0,
+      fixedPrice: 50
+    }
   ],
 
-  // Adicionais Digitais & Redes Sociais
-  digitalAddons: [
-    { id: "feed_templates", name: "Pack 10 Templates Editáveis (Canva/Figma)", desc: "Posts e stories prontos e alinhados à nova identidade", price: 390 },
-    { id: "destaques", name: "Capas de Destaques + Selos Reels", desc: "Kit com até 8 ícones personalizados para o Instagram", price: 180 },
-    { id: "pitchdeck", name: "Apresentação Comercial (Pitch Deck)", desc: "Apresentação institucional em slides (até 12 páginas em PDF)", price: 520 },
-    { id: "assinatura", name: "Assinatura de E-mail HTML", desc: "Design clicável com links para WhatsApp e redes sociais", price: 140 }
-  ],
-
-  // Prazos
+  // Prazos de Entrega
   timelines: {
-    standard: { id: "standard", name: "Padrão (15 a 25 dias úteis)", price: 0, desc: "Processo imersivo com tempo ideal de pesquisa e criação." },
-    express: { id: "express", name: "Prioritário / Expresso (7 a 10 dias úteis)", price: 650, desc: "Fila exclusiva de desenvolvimento acelerado." }
+    standard: {
+      id: "standard",
+      name: "Prazo Padrão (10 a 15 dias úteis)",
+      desc: "Tempo ideal e calmo para pesquisa, conceito e refinamento da sua marca.",
+      price: 0
+    },
+    express: {
+      id: "express",
+      name: "Prazo Expresso (5 a 7 dias úteis)",
+      desc: "Desenvolvimento prioritário acelerado com foco total na sua entrega.",
+      price: 70
+    }
   }
 };
 
-// Estado da Aplicação
 class BudgetApp {
   constructor() {
-    this.config = this.loadConfig();
+    this.config = STUDIO_CONFIG;
     this.currentStep = 1;
-    this.totalSteps = 6;
-    
+    this.totalSteps = 5;
+
     this.state = {
       client: {
         name: "",
@@ -91,47 +91,22 @@ class BudgetApp {
         niche: "",
         whatsapp: ""
       },
-      selectedPackage: "pro", // Default recomendado
-      selectedPrints: new Set(),
-      selectedDigitals: new Set(),
+      selectedPackage: "pro", // Default Pro
+      selectedAddons: new Set(),
       selectedTimeline: "standard"
     };
 
     this.init();
   }
 
-  loadConfig() {
-    try {
-      const saved = localStorage.getItem("orcamento_id_config");
-      if (saved) {
-        return { ...DEFAULT_CONFIG, ...JSON.parse(saved) };
-      }
-    } catch (e) {
-      console.warn("Could not read config from localStorage:", e);
-    }
-    return DEFAULT_CONFIG;
-  }
-
-  saveConfig(newConfig) {
-    this.config = newConfig;
-    try {
-      localStorage.setItem("orcamento_id_config", JSON.stringify(newConfig));
-    } catch (e) {
-      console.warn("Could not write to localStorage:", e);
-    }
-    this.render();
-    this.updateCalculation();
-  }
-
   init() {
     this.initVantaBackground();
     this.render();
     this.bindEvents();
-    this.updateCalculation();
+    this.updateStepIndicator();
   }
 
   initVantaBackground() {
-    // Tenta inicializar Vanta.NET se disponível
     try {
       if (window.VANTA && window.VANTA.NET) {
         window.VANTA.NET({
@@ -145,18 +120,17 @@ class BudgetApp {
           scaleMobile: 1.0,
           color: 0x52525b,
           backgroundColor: 0x070709,
-          points: 9.0,
-          maxDistance: 20.0,
-          spacing: 17.0
+          points: 8.0,
+          maxDistance: 19.0,
+          spacing: 18.0
         });
       }
     } catch (e) {
-      console.log("Vanta background background running fallback glow effect:", e);
+      console.log("Fallback glowing ambient orbs ativo");
     }
   }
 
   bindEvents() {
-    // Navegação Inferior
     const btnNext = document.getElementById("btn-next");
     const btnBack = document.getElementById("btn-back");
 
@@ -167,34 +141,7 @@ class BudgetApp {
       btnBack.addEventListener("click", () => this.handlePrevStep());
     }
 
-    // Modal de Configurações
-    const openSettingsBtn = document.getElementById("open-settings-btn");
-    const closeSettingsBtn = document.getElementById("close-settings-btn");
-    const settingsModal = document.getElementById("settings-modal");
-    const saveSettingsBtn = document.getElementById("save-settings-btn");
-
-    if (openSettingsBtn && settingsModal) {
-      openSettingsBtn.addEventListener("click", () => {
-        this.populateSettingsForm();
-        settingsModal.classList.add("active");
-      });
-    }
-
-    if (closeSettingsBtn && settingsModal) {
-      closeSettingsBtn.addEventListener("click", () => {
-        settingsModal.classList.remove("active");
-      });
-    }
-
-    if (saveSettingsBtn && settingsModal) {
-      saveSettingsBtn.addEventListener("click", () => {
-        this.saveSettingsFromForm();
-        settingsModal.classList.remove("active");
-        this.showToast("Configurações atualizadas!");
-      });
-    }
-
-    // Inputs do Passo 1
+    // Inputs da Etapa 1
     const clientNameInput = document.getElementById("client-name");
     const clientCompanyInput = document.getElementById("client-company");
     const clientNicheInput = document.getElementById("client-niche");
@@ -207,12 +154,12 @@ class BudgetApp {
 
       if (handleEl && avatarEl) {
         if (source) {
-          const cleanHandle = source
+          const clean = source
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replace(/[^a-z0-9_]/g, "");
-          handleEl.textContent = `@${cleanHandle || "sua_marca"}`;
+          handleEl.textContent = `@${clean || "sua_marca"}`;
           avatarEl.textContent = source.charAt(0).toUpperCase();
         } else {
           handleEl.textContent = "@sua_marca";
@@ -225,26 +172,22 @@ class BudgetApp {
       clientNameInput.addEventListener("input", (e) => {
         this.state.client.name = e.target.value.trim();
         updateClientBadge();
-        this.updateCalculation();
       });
     }
     if (clientCompanyInput) {
       clientCompanyInput.addEventListener("input", (e) => {
         this.state.client.company = e.target.value.trim();
         updateClientBadge();
-        this.updateCalculation();
       });
     }
     if (clientNicheInput) {
       clientNicheInput.addEventListener("input", (e) => {
         this.state.client.niche = e.target.value.trim();
-        this.updateCalculation();
       });
     }
     if (clientPhoneInput) {
       clientPhoneInput.addEventListener("input", (e) => {
         this.state.client.whatsapp = e.target.value.trim();
-        this.updateCalculation();
       });
     }
   }
@@ -252,7 +195,7 @@ class BudgetApp {
   handleNextStep() {
     if (this.currentStep === 1) {
       if (!this.state.client.name) {
-        this.showToast("Por favor, digite seu nome para continuarmos.");
+        this.showToast("Por favor, digite seu nome para continuar.");
         const input = document.getElementById("client-name");
         if (input) input.focus();
         return;
@@ -273,7 +216,6 @@ class BudgetApp {
   goToStep(stepNumber) {
     this.currentStep = stepNumber;
 
-    // Atualiza panes
     document.querySelectorAll(".step-pane").forEach((pane) => {
       pane.classList.remove("active");
     });
@@ -282,22 +224,28 @@ class BudgetApp {
       targetPane.classList.add("active");
     }
 
-    // Atualiza barra de progresso
+    this.updateStepIndicator();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Se chegou na proposta final, renderiza os totais e botões
+    if (this.currentStep === this.totalSteps) {
+      this.renderSummary();
+    }
+  }
+
+  updateStepIndicator() {
     const progressFill = document.getElementById("progress-fill");
     const stepLabel = document.getElementById("step-label");
+    const bottomStepText = document.getElementById("bottom-step-text");
     const percent = (this.currentStep / this.totalSteps) * 100;
-    
-    if (progressFill) {
-      progressFill.style.width = `${percent}%`;
-    }
-    if (stepLabel) {
-      stepLabel.textContent = `ETAPA ${this.currentStep} DE ${this.totalSteps}`;
-    }
 
-    // Atualiza botões
+    if (progressFill) progressFill.style.width = `${percent}%`;
+    if (stepLabel) stepLabel.textContent = `ETAPA ${this.currentStep} DE ${this.totalSteps}`;
+    if (bottomStepText) bottomStepText.textContent = `Etapa ${this.currentStep} de ${this.totalSteps}`;
+
     const btnBack = document.getElementById("btn-back");
     const btnNext = document.getElementById("btn-next");
-    const bottomNav = document.getElementById("bottom-nav");
 
     if (btnBack) {
       btnBack.style.visibility = this.currentStep === 1 ? "hidden" : "visible";
@@ -311,35 +259,15 @@ class BudgetApp {
         btnNext.innerHTML = `Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
       }
     }
-
-    // Scroll suave para o topo do conteúdo
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Se chegou no resumo final, renderiza
-    if (this.currentStep === this.totalSteps) {
-      this.renderSummary();
-    }
   }
 
   render() {
-    // Renderiza dados do estúdio no cabeçalho
-    const brandNameEls = document.querySelectorAll(".brand-name-text");
-    brandNameEls.forEach(el => el.textContent = this.config.designerName);
-
-    const brandHandleEls = document.querySelectorAll(".brand-handle-text");
-    brandHandleEls.forEach(el => el.textContent = this.config.designerHandle);
-
-    // Renderiza Cards do Pacote Principal (Passo 2)
     this.renderPackages();
-
-    // Renderiza Checklists de Adicionais (Passo 3 e 4)
-    this.renderPrintAddons();
-    this.renderDigitalAddons();
-
-    // Renderiza Prazos (Passo 5)
+    this.renderAddons();
     this.renderTimelines();
   }
 
+  // Renderiza os 2 Planos SEM MOSTRAR PREÇOS
   renderPackages() {
     const container = document.getElementById("packages-container");
     if (!container) return;
@@ -352,7 +280,6 @@ class BudgetApp {
       card.onclick = () => {
         this.state.selectedPackage = pkg.id;
         this.renderPackages();
-        this.updateCalculation();
       };
 
       const featuresHtml = pkg.features
@@ -378,35 +305,31 @@ class BudgetApp {
           </div>
         </div>
         <ul class="card-features">${featuresHtml}</ul>
-        <div class="card-price-row">
-          <div>
-            <div class="card-price-note">Investimento</div>
-            <div class="card-price-value">${this.formatCurrency(pkg.price)}</div>
-          </div>
-          <div class="card-price-note">ou em até ${this.config.maxInstallments}x no cartão</div>
+        <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.78rem; color: #a1a1aa;">
+          ✦ Clique para selecionar este plano
         </div>
       `;
       container.appendChild(card);
     });
   }
 
-  renderPrintAddons() {
-    const container = document.getElementById("print-addons-container");
+  // Renderiza Adicionais SEM MOSTRAR PREÇOS
+  renderAddons() {
+    const container = document.getElementById("addons-container");
     if (!container) return;
 
     container.innerHTML = "";
-    this.config.printAddons.forEach((item) => {
-      const isChecked = this.state.selectedPrints.has(item.id);
+    this.config.addons.forEach((item) => {
+      const isChecked = this.state.selectedAddons.has(item.id);
       const row = document.createElement("div");
       row.className = `checklist-item ${isChecked ? "selected" : ""}`;
       row.onclick = () => {
-        if (this.state.selectedPrints.has(item.id)) {
-          this.state.selectedPrints.delete(item.id);
+        if (this.state.selectedAddons.has(item.id)) {
+          this.state.selectedAddons.delete(item.id);
         } else {
-          this.state.selectedPrints.add(item.id);
+          this.state.selectedAddons.add(item.id);
         }
-        this.renderPrintAddons();
-        this.updateCalculation();
+        this.renderAddons();
       };
 
       row.innerHTML = `
@@ -419,47 +342,15 @@ class BudgetApp {
             <p>${item.desc}</p>
           </div>
         </div>
-        <div class="checklist-price">+ ${this.formatCurrency(item.price)}</div>
-      `;
-      container.appendChild(row);
-    });
-  }
-
-  renderDigitalAddons() {
-    const container = document.getElementById("digital-addons-container");
-    if (!container) return;
-
-    container.innerHTML = "";
-    this.config.digitalAddons.forEach((item) => {
-      const isChecked = this.state.selectedDigitals.has(item.id);
-      const row = document.createElement("div");
-      row.className = `checklist-item ${isChecked ? "selected" : ""}`;
-      row.onclick = () => {
-        if (this.state.selectedDigitals.has(item.id)) {
-          this.state.selectedDigitals.delete(item.id);
-        } else {
-          this.state.selectedDigitals.add(item.id);
-        }
-        this.renderDigitalAddons();
-        this.updateCalculation();
-      };
-
-      row.innerHTML = `
-        <div class="checklist-left">
-          <div class="custom-checkbox">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          </div>
-          <div class="checklist-info">
-            <h4>${item.name}</h4>
-            <p>${item.desc}</p>
-          </div>
+        <div style="font-size: 0.75rem; color: var(--accent-amber); font-weight: 600;">
+          ${isChecked ? "Selecionado" : "Adicionar"}
         </div>
-        <div class="checklist-price">+ ${this.formatCurrency(item.price)}</div>
       `;
       container.appendChild(row);
     });
   }
 
+  // Renderiza Prazos SEM MOSTRAR PREÇOS
   renderTimelines() {
     const container = document.getElementById("timelines-container");
     if (!container) return;
@@ -472,7 +363,6 @@ class BudgetApp {
       card.onclick = () => {
         this.state.selectedTimeline = timeline.id;
         this.renderTimelines();
-        this.updateCalculation();
       };
 
       card.innerHTML = `
@@ -485,67 +375,60 @@ class BudgetApp {
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
         </div>
-        <div class="card-price-row">
-          <div class="card-price-value">${timeline.price === 0 ? "Incluso" : "+ " + this.formatCurrency(timeline.price)}</div>
-          <div class="card-price-note">${timeline.price === 0 ? "Prazo Padrão" : "Taxa Prioritária"}</div>
+        <div style="margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.78rem; color: #a1a1aa;">
+          ${timeline.price === 0 ? "Entrega Regular" : "Fila Prioritária"}
         </div>
       `;
       container.appendChild(card);
     });
   }
 
+  // Cálculo Dinâmico no Final
   calculateTotals() {
-    // Pacote principal
     const pkg = this.config.packages[this.state.selectedPackage] || this.config.packages.pro;
-    let total = pkg.price;
+    let basePrice = pkg.price;
+    let total = basePrice;
 
-    // Impressos
-    this.state.selectedPrints.forEach((id) => {
-      const item = this.config.printAddons.find((p) => p.id === id);
-      if (item) total += item.price;
-    });
-
-    // Digitais
-    this.state.selectedDigitals.forEach((id) => {
-      const item = this.config.digitalAddons.find((d) => d.id === id);
-      if (item) total += item.price;
+    // Soma adicionais (com base fixa ou % sobre o plano)
+    const selectedAddonsList = [];
+    this.state.selectedAddons.forEach((id) => {
+      const addon = this.config.addons.find((a) => a.id === id);
+      if (addon) {
+        const itemVal = addon.percentRate > 0 ? Math.round(basePrice * addon.percentRate) : addon.fixedPrice;
+        total += itemVal;
+        selectedAddonsList.push({ ...addon, calculatedPrice: itemVal });
+      }
     });
 
     // Prazo
-    const timeline = this.config.timelines[this.state.selectedTimeline];
-    if (timeline) {
-      total += timeline.price;
-    }
+    const timeline = this.config.timelines[this.state.selectedTimeline] || this.config.timelines.standard;
+    total += timeline.price;
 
-    // PIX com desconto
-    const pixDiscountAmount = total * (this.config.pixDiscountPercent / 100);
+    // Desconto no PIX (10%)
+    const pixDiscountAmount = Math.round(total * (this.config.pixDiscountPercent / 100));
     const totalPix = total - pixDiscountAmount;
 
-    // Parcelamento sem juros
-    const installmentValue = total / this.config.maxInstallments;
+    // Parcelamento em até X vezes sem juros
+    const maxParcels = this.config.maxInstallments;
+    const installmentValue = Math.round(total / maxParcels);
 
-    // 50% entrada + 50% entrega
-    const splitPayment = total / 2;
+    // Entrada 50% + 50%
+    const splitPayment = Math.round(total / 2);
 
     return {
       total,
       totalPix,
       pixDiscountAmount,
+      maxParcels,
       installmentValue,
       splitPayment,
       packageItem: pkg,
+      addonsList: selectedAddonsList,
       timelineItem: timeline
     };
   }
 
-  updateCalculation() {
-    const totals = this.calculateTotals();
-    const liveTallyEl = document.getElementById("live-tally-value");
-    if (liveTallyEl) {
-      liveTallyEl.textContent = this.formatCurrency(totals.total);
-    }
-  }
-
+  // Renderiza Proposta Final (Etapa 5)
   renderSummary() {
     const container = document.getElementById("summary-render-target");
     if (!container) return;
@@ -553,47 +436,27 @@ class BudgetApp {
     const totals = this.calculateTotals();
     const client = this.state.client;
 
-    // Itens impressos selecionados
-    const printsList = Array.from(this.state.selectedPrints)
-      .map((id) => this.config.printAddons.find((p) => p.id === id))
-      .filter(Boolean);
-
-    // Itens digitais selecionados
-    const digitalsList = Array.from(this.state.selectedDigitals)
-      .map((id) => this.config.digitalAddons.find((d) => d.id === id))
-      .filter(Boolean);
-
-    // Mensagem WhatsApp formatada
-    const whatsappMessage = this.generateWhatsAppMessage(totals, printsList, digitalsList);
+    const whatsappMessage = this.generateWhatsAppMessage(totals);
     const whatsappUrl = `https://wa.me/${this.config.whatsappPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    let breakdownItemsHtml = `
+    let breakdownHtml = `
       <div class="breakdown-row main-item">
         <span>📦 ${totals.packageItem.name}</span>
         <span class="val">${this.formatCurrency(totals.packageItem.price)}</span>
       </div>
     `;
 
-    printsList.forEach((item) => {
-      breakdownItemsHtml += `
+    totals.addonsList.forEach((item) => {
+      breakdownHtml += `
         <div class="breakdown-row">
-          <span>• Impresso: ${item.name}</span>
-          <span class="val">+ ${this.formatCurrency(item.price)}</span>
+          <span>+ ${item.name}</span>
+          <span class="val">+ ${this.formatCurrency(item.calculatedPrice)}</span>
         </div>
       `;
     });
 
-    digitalsList.forEach((item) => {
-      breakdownItemsHtml += `
-        <div class="breakdown-row">
-          <span>• Digital: ${item.name}</span>
-          <span class="val">+ ${this.formatCurrency(item.price)}</span>
-        </div>
-      `;
-    });
-
-    if (totals.timelineItem && totals.timelineItem.price > 0) {
-      breakdownItemsHtml += `
+    if (totals.timelineItem.price > 0) {
+      breakdownHtml += `
         <div class="breakdown-row">
           <span>⚡ ${totals.timelineItem.name}</span>
           <span class="val">+ ${this.formatCurrency(totals.timelineItem.price)}</span>
@@ -614,16 +477,16 @@ class BudgetApp {
         <div class="summary-divider"></div>
 
         <div class="summary-breakdown-list">
-          ${breakdownItemsHtml}
+          ${breakdownHtml}
         </div>
 
         <div class="pricing-banner">
-          <div class="section-label">INVESTIMENTO TOTAL</div>
+          <div class="section-label">VALOR DO PROJETO</div>
           <div class="pricing-main-price">
             <span class="pricing-amount">${this.formatCurrency(totals.total)}</span>
           </div>
           <div class="pricing-condition">
-            ou até <strong>${this.config.maxInstallments}x de ${this.formatCurrency(totals.installmentValue)} sem juros</strong> no cartão
+            ou em até <strong>${totals.maxParcels}x de ${this.formatCurrency(totals.installmentValue)} sem juros</strong> no cartão
           </div>
         </div>
 
@@ -636,29 +499,29 @@ class BudgetApp {
 
           <div class="pay-card">
             <div class="pay-card-label">Parcelado no Cartão</div>
-            <div class="pay-card-val">${this.config.maxInstallments}x de ${this.formatCurrency(totals.installmentValue)}</div>
-            <div class="pay-card-sub">Sem acréscimo / Sem juros</div>
+            <div class="pay-card-val">${totals.maxParcels}x de ${this.formatCurrency(totals.installmentValue)}</div>
+            <div class="pay-card-sub">Sem juros</div>
           </div>
 
           <div class="pay-card">
             <div class="pay-card-label">Entrada + Aprovação</div>
             <div class="pay-card-val">2x de ${this.formatCurrency(totals.splitPayment)}</div>
-            <div class="pay-card-sub">50% no início e 50% na entrega</div>
+            <div class="pay-card-sub">50% no início e 50% na aprovação</div>
           </div>
 
           <div class="pay-card">
             <div class="pay-card-label">Prazo Estimado</div>
             <div class="pay-card-val">${totals.timelineItem.name.split("(")[0]}</div>
-            <div class="pay-card-sub">${totals.timelineItem.name.includes("(") ? totals.timelineItem.name.split("(")[1].replace(")", "") : "Sob consulta"}</div>
+            <div class="pay-card-sub">${totals.timelineItem.name.includes("(") ? totals.timelineItem.name.split("(")[1].replace(")", "") : "Entrega regular"}</div>
           </div>
         </div>
 
         <div class="installment-slider-wrapper">
           <div class="installment-slider-header">
-            <span>Simulador de Parcelas no Cartão:</span>
-            <span class="installment-calc-highlight" id="installment-calc-display">${this.config.maxInstallments}x de ${this.formatCurrency(totals.installmentValue)} sem juros</span>
+            <span>Simular parcelas no cartão:</span>
+            <span class="installment-calc-highlight" id="installment-calc-display">${totals.maxParcels}x de ${this.formatCurrency(totals.installmentValue)} sem juros</span>
           </div>
-          <input type="range" class="installment-range-input" id="installment-slider" min="1" max="${this.config.maxInstallments}" value="${this.config.maxInstallments}">
+          <input type="range" class="installment-range-input" id="installment-slider" min="1" max="${totals.maxParcels}" value="${totals.maxParcels}">
         </div>
 
         <div class="summary-actions">
@@ -667,18 +530,18 @@ class BudgetApp {
             Enviar Orçamento no WhatsApp
           </a>
 
+          <button id="print-proposal-btn" class="btn-secondary-action">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Baixar Proposta (PDF)
+          </button>
+
           <button id="copy-summary-btn" class="btn-secondary-action">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             Copiar Resumo
           </button>
-
-          <button id="print-proposal-btn" class="btn-secondary-action">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            Salvar PDF
-          </button>
         </div>
 
-        <div style="text-align: center; margin-top: 18px;">
+        <div style="text-align: center; margin-top: 20px;">
           <button id="restart-btn" style="background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; text-decoration: underline;">
             ↺ Refazer simulação ou alterar itens
           </button>
@@ -686,33 +549,36 @@ class BudgetApp {
       </div>
     `;
 
-    // Bind botões do resumo
-    const copyBtn = document.getElementById("copy-summary-btn");
-    if (copyBtn) {
-      copyBtn.onclick = () => {
-        navigator.clipboard.writeText(whatsappMessage).then(() => {
-          this.showToast("Resumo copiado para a área de transferência!");
-        });
-      };
+    // Slider de parcelas
+    const slider = document.getElementById("installment-slider");
+    const display = document.getElementById("installment-calc-display");
+    if (slider && display) {
+      slider.addEventListener("input", (e) => {
+        const count = parseInt(e.target.value, 10);
+        const parcelVal = Math.round(totals.total / count);
+        display.textContent = `${count}x de ${this.formatCurrency(parcelVal)} sem juros`;
+      });
     }
 
-    const printProposalBtn = document.getElementById("print-proposal-btn");
-    if (printProposalBtn) {
-      printProposalBtn.onclick = () => {
+    // Botão de PDF
+    const printBtn = document.getElementById("print-proposal-btn");
+    if (printBtn) {
+      printBtn.onclick = () => {
         window.print();
       };
     }
 
-    const installmentSlider = document.getElementById("installment-slider");
-    const installmentDisplay = document.getElementById("installment-calc-display");
-    if (installmentSlider && installmentDisplay) {
-      installmentSlider.addEventListener("input", (e) => {
-        const count = parseInt(e.target.value, 10);
-        const parcelVal = totals.total / count;
-        installmentDisplay.textContent = `${count}x de ${this.formatCurrency(parcelVal)} sem juros`;
-      });
+    // Copiar
+    const copyBtn = document.getElementById("copy-summary-btn");
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText(whatsappMessage).then(() => {
+          this.showToast("Resumo copiado com sucesso!");
+        });
+      };
     }
 
+    // Reiniciar
     const restartBtn = document.getElementById("restart-btn");
     if (restartBtn) {
       restartBtn.onclick = () => {
@@ -721,7 +587,7 @@ class BudgetApp {
     }
   }
 
-  generateWhatsAppMessage(totals, printsList, digitalsList) {
+  generateWhatsAppMessage(totals) {
     const c = this.state.client;
     let text = `*SOLICITAÇÃO DE ORÇAMENTO - IDENTIDADE VISUAL*\n\n`;
     text += `👤 *Cliente:* ${c.name || "Não informado"}\n`;
@@ -730,80 +596,26 @@ class BudgetApp {
     if (c.whatsapp) text += `📱 *WhatsApp do Cliente:* ${c.whatsapp}\n`;
 
     text += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
-    text += `📦 *ESCOPO DO PROJETO*\n`;
+    text += `📦 *ESCOPO ESCOLHIDO*\n`;
     text += `• *${totals.packageItem.name}* (${this.formatCurrency(totals.packageItem.price)})\n`;
 
-    if (printsList.length > 0) {
-      text += `\n📄 *Materiais Gráficos / Impressos:*\n`;
-      printsList.forEach((p) => {
-        text += `  + ${p.name} (${this.formatCurrency(p.price)})\n`;
+    if (totals.addonsList.length > 0) {
+      text += `\n✨ *Materiais Extras Adicionados:*\n`;
+      totals.addonsList.forEach((a) => {
+        text += `  + ${a.name} (${this.formatCurrency(a.calculatedPrice)})\n`;
       });
     }
 
-    if (digitalsList.length > 0) {
-      text += `\n📱 *Materiais Digitais / Redes:*\n`;
-      digitalsList.forEach((d) => {
-        text += `  + ${d.name} (${this.formatCurrency(d.price)})\n`;
-      });
-    }
-
-    text += `\n⏱ *Prazo Escolhido:* ${totals.timelineItem.name}\n`;
+    text += `\n⏱ *Prazo:* ${totals.timelineItem.name}\n`;
     text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
     text += `💰 *VALOR TOTAL:* ${this.formatCurrency(totals.total)}\n\n`;
-    text += `💳 *Condições de Pagamento:*\n`;
+    text += `💳 *Formas de Pagamento:*\n`;
     text += `1️⃣ À vista via PIX (-${this.config.pixDiscountPercent}%): *${this.formatCurrency(totals.totalPix)}*\n`;
-    text += `2️⃣ Cartão de Crédito: *em até ${this.config.maxInstallments}x de ${this.formatCurrency(totals.installmentValue)} sem juros*\n`;
-    text += `3️⃣ Entrada + Entrega: *50% no início (${this.formatCurrency(totals.splitPayment)}) e 50% na aprovação final*\n\n`;
+    text += `2️⃣ Cartão de Crédito: *em até ${totals.maxParcels}x de ${this.formatCurrency(totals.installmentValue)} sem juros*\n`;
+    text += `3️⃣ Entrada + Aprovação: *50% no início (${this.formatCurrency(totals.splitPayment)}) e 50% na aprovação final*\n\n`;
     text += `Olá ${this.config.designerName}! Gostaria de tirar dúvidas e dar o próximo passo com essa proposta.`;
 
     return text;
-  }
-
-  populateSettingsForm() {
-    const designerInput = document.getElementById("set-designer-name");
-    const handleInput = document.getElementById("set-designer-handle");
-    const phoneInput = document.getElementById("set-whatsapp-phone");
-    const installmentsInput = document.getElementById("set-max-installments");
-    const pixDiscountInput = document.getElementById("set-pix-discount");
-    const priceEssentialInput = document.getElementById("set-price-essential");
-    const priceProInput = document.getElementById("set-price-pro");
-    const priceStrategicInput = document.getElementById("set-price-strategic");
-
-    if (designerInput) designerInput.value = this.config.designerName;
-    if (handleInput) handleInput.value = this.config.designerHandle;
-    if (phoneInput) phoneInput.value = this.config.whatsappPhone;
-    if (installmentsInput) installmentsInput.value = this.config.maxInstallments;
-    if (pixDiscountInput) pixDiscountInput.value = this.config.pixDiscountPercent;
-    if (priceEssentialInput) priceEssentialInput.value = this.config.packages.essential.price;
-    if (priceProInput) priceProInput.value = this.config.packages.pro.price;
-    if (priceStrategicInput) priceStrategicInput.value = this.config.packages.strategic.price;
-  }
-
-  saveSettingsFromForm() {
-    const designerName = document.getElementById("set-designer-name")?.value.trim() || this.config.designerName;
-    const designerHandle = document.getElementById("set-designer-handle")?.value.trim() || this.config.designerHandle;
-    let whatsappPhone = document.getElementById("set-whatsapp-phone")?.value.replace(/\D/g, "") || this.config.whatsappPhone;
-    const maxInstallments = parseInt(document.getElementById("set-max-installments")?.value, 10) || this.config.maxInstallments;
-    const pixDiscountPercent = parseInt(document.getElementById("set-pix-discount")?.value, 10) || this.config.pixDiscountPercent;
-    
-    const priceEssential = parseInt(document.getElementById("set-price-essential")?.value, 10) || this.config.packages.essential.price;
-    const pricePro = parseInt(document.getElementById("set-price-pro")?.value, 10) || this.config.packages.pro.price;
-    const priceStrategic = parseInt(document.getElementById("set-price-strategic")?.value, 10) || this.config.packages.strategic.price;
-
-    const updatedPackages = { ...this.config.packages };
-    updatedPackages.essential = { ...updatedPackages.essential, price: priceEssential };
-    updatedPackages.pro = { ...updatedPackages.pro, price: pricePro };
-    updatedPackages.strategic = { ...updatedPackages.strategic, price: priceStrategic };
-
-    this.saveConfig({
-      ...this.config,
-      designerName,
-      designerHandle,
-      whatsappPhone,
-      maxInstallments,
-      pixDiscountPercent,
-      packages: updatedPackages
-    });
   }
 
   formatCurrency(value) {
@@ -831,8 +643,6 @@ class BudgetApp {
   }
 }
 
-// Inicializa a aplicação quando o DOM estiver pronto
 document.addEventListener("DOMContentLoaded", () => {
   window.budgetApp = new BudgetApp();
 });
-

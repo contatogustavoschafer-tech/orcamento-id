@@ -1107,3 +1107,8 @@ body {
     color: #64748b !important;
   }
 }
+
+.bottom-step-indicator {
+  display: flex;
+  flex-direction: column;
+}
